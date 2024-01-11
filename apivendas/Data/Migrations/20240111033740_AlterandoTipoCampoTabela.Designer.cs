@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using apivendas.Data;
 
@@ -11,9 +12,11 @@ using apivendas.Data;
 namespace apivendas.Data.Migrations
 {
     [DbContext(typeof(ApiVendasDbContext))]
-    partial class ApiVendasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240111033740_AlterandoTipoCampoTabela")]
+    partial class AlterandoTipoCampoTabela
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -9,6 +9,6 @@ namespace apivendas.Dtos.Produtos
         public decimal Valor { get; set; }
         public decimal? ValorCusto { get; set; }
         public string? CodigoBarra { get; set; }
-        public StatusProduto Status { get; set; }
+        public bool Status { get; set; }
     }
 }

@@ -13,7 +13,8 @@ namespace apivendas.Data.Map
             builder.Property(p => p.Valor);
             builder.Property(p => p.ValorCusto);
             builder.Property(p => p.CodigoBarra);
-            builder.Property(p => p.Status);
+            builder.Property(p => p.Status)
+                .HasColumnType("bit");
         }
     }
 }
