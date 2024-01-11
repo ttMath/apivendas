@@ -23,11 +23,26 @@ namespace apivendas.Controllers
             return Ok(produtos);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ListarId(int id)
+        {
+            var produtoDto = await _produtoServico.ListarId(id);
+            return Ok(produtoDto);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Criar([FromBody] CriarProdrutoDto criarProdruto)
         {
-            await _produtoServico.Criar(criarProdruto);
-            return Ok();
+            var produto = await _produtoServico.Criar(criarProdruto);
+            return Ok(produto);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarProduto(int id, [FromBody] CriarProdrutoDto prodrutoDto)
+        {
+            var produtoAtualizado = await _produtoServico.AtualizarProduto(id, prodrutoDto);
+
+            return Ok(produtoAtualizado);
         }
     }
 }

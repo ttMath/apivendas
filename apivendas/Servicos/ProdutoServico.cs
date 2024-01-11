@@ -1,44 +1,65 @@
 ﻿using apivendas.Dtos.Produtos;
 using apivendas.Models;
-using apivendas.Repositorios;
 using apivendas.Repositorios.Interfaces;
 using apivendas.Servicos.Interfaces;
-using System.Collections;
-using System.Collections.Generic;
+using AutoMapper;
 
 namespace apivendas.Servicos
 {
     public class ProdutoServico : IProdutoServico
     {
         private readonly IProdutoRepositorio _produtoRepositorio;
-        public ProdutoServico(IProdutoRepositorio produtoRepositorio)
+        private readonly IMapper _mapper;
+        public ProdutoServico(IProdutoRepositorio produtoRepositorio, IMapper mapper)
         {
             _produtoRepositorio = produtoRepositorio;
-        }
-
-        public async Task Criar(CriarProdrutoDto criarProdrutoDto)
-        {
-            Produto produto = new Produto();
-            produto.Descricao = criarProdrutoDto.Descricao;
-            produto.Valor = criarProdrutoDto.Valor;
-            produto.ValorCusto = criarProdrutoDto.ValorCusto;
-            produto.CodigoBarra = criarProdrutoDto.CodigoBarra;
-
-            await _produtoRepositorio.Criar(produto);
+            _mapper = mapper;
         }
 
         public async Task<List<ProdutosDto>> Listar()
         {
             var produtos = await _produtoRepositorio.Listar();
-            return produtos.Select(p => new ProdutosDto
+            var produtosDto = _mapper.Map<List<ProdutosDto>>(produtos);
+
+            return produtosDto;
+        }
+        public async Task<ProdutosDto> ListarId(int id)
+        {
+            var produto = await _produtoRepositorio.ListarId(id);
+
+            if (produto == null)
             {
-                Id = p.Id,
-                CodigoBarra = p.CodigoBarra,
-                Descricao = p.Descricao,
-                Status = p.Status,
-                Valor = p.Valor,
-                ValorCusto = p.ValorCusto
-            }).ToList();
+                return null;
+            }
+
+            var produtoDto = _mapper.Map<ProdutosDto>(produto);
+
+            return produtoDto;
+        }
+
+        public async Task<ProdutosDto> Criar(CriarProdrutoDto criarProdrutoDto)
+        {
+            var produto = _mapper.Map<Produto>(criarProdrutoDto);
+
+            await _produtoRepositorio.Criar(produto);
+
+            return _mapper.Map<ProdutosDto>(produto);
+        }
+
+        public async Task<ProdutosDto> AtualizarProduto(int id, CriarProdrutoDto prodrutoDto)
+        {
+            var produtoExistente = await _produtoRepositorio.ListarId(id);
+
+            if (produtoExistente == null)
+            {
+                return null;
+            }
+
+            _mapper.Map(prodrutoDto, produtoExistente);
+
+            await _produtoRepositorio.AtualizarProduto(produtoExistente);
+
+            return _mapper.Map<ProdutosDto>(produtoExistente);
         }
     }
 }

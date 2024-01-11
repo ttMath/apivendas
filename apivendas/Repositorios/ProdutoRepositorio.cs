@@ -14,9 +14,10 @@ namespace apivendas.Repositorios
             _db = apiVendasDbContext;
         }
 
-        public async Task<Produto?> ListarProdutoId(int id)
+        public async Task<Produto?> ListarId(int id)
         {
-            return new Produto();
+            var produto = await _db.Produtos.SingleOrDefaultAsync(p => p.Id == id);
+            return produto;
         }
 
         public async Task<List<Produto>> Listar()
@@ -33,7 +34,7 @@ namespace apivendas.Repositorios
             return produto;
         }
 
-        public async Task<Produto> AtualizarProduto(Produto produto, int id)
+        public async Task<Produto> AtualizarProduto(Produto produto)
         {
             _db.Produtos.Update(produto);
             await _db.SaveChangesAsync();

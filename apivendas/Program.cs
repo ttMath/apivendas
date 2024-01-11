@@ -1,4 +1,5 @@
 using apivendas.Data;
+using apivendas.Data.Map.Automap;
 using apivendas.Repositorios;
 using apivendas.Repositorios.Interfaces;
 using apivendas.Servicos;
@@ -17,6 +18,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApiVendasDbContext>(d => d.UseSqlServer(connectionString));
 builder.Services.AddScoped<IProdutoServico, ProdutoServico>();
 builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+
+builder.Services.AddAutoMapper(typeof(ServicoParaDtos));
 
 var app = builder.Build();
 
