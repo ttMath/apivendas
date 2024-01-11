@@ -10,8 +10,8 @@ namespace apivendas.Data.Map.Automap
     {
         public ServicoParaDtos()
         {
-            CreateMap<Produto, ProdutosDto>().ReverseMap();
-            CreateMap<Produto, CriarProdrutoDto>().ReverseMap();
+            CreateMap<Produto, ProdutosDto>();
+            CreateMap<CriarProdrutoDto, ProdutosDto>();
         }
     }
 }

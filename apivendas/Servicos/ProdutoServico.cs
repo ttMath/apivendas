@@ -41,7 +41,7 @@ namespace apivendas.Servicos
         {
             var produto = _mapper.Map<Produto>(criarProdrutoDto);
 
-            await _produtoRepositorio.Criar(produto);
+            produto = await _produtoRepositorio.Criar(produto);
 
             return _mapper.Map<ProdutosDto>(produto);
         }
