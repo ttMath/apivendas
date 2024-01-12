@@ -14,5 +14,7 @@ namespace apivendas.Models
         public decimal? ValorCusto { get; set; }
         public string? CodigoBarra { get; set; }
         public bool Status { get; set; } 
+
+        public ICollection<Estoque> Estoques { get; set; }
     }
 }

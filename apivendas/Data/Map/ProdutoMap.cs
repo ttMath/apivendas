@@ -15,6 +15,10 @@ namespace apivendas.Data.Map
             builder.Property(p => p.CodigoBarra);
             builder.Property(p => p.Status)
                 .HasColumnType("bit");
+
+            builder.HasMany(p => p.Estoques)
+                .WithOne(e => e.Produto)
+                .HasForeignKey(e => e.IdProduto);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace apivendas.Data.Map
             builder.Property(e => e.Quantidade).IsRequired();
 
             builder.HasOne(e => e.Produto)
-                .WithMany(p => p.Estoque).
+                .WithMany(p => p.Estoques).
                 HasForeignKey(e => e.IdProduto);
         }
     }
