@@ -13,6 +13,7 @@ namespace apivendas.Data
         }
 
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Estoque> Estoques { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
