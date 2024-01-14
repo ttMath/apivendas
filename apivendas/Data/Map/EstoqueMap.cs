@@ -10,7 +10,7 @@ namespace apivendas.Data.Map
         public void Configure(EntityTypeBuilder<Estoque> builder)
         {
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.IdProduto).IsRequired();
+            builder.Property(e => e.IdProduto);
             builder.Property(e => e.Quantidade).IsRequired();
 
             builder.HasOne(e => e.Produto)

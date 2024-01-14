@@ -11,7 +11,7 @@ namespace apivendas.Data.Map.Automap
         public ServicoParaDtos()
         {
             CreateMap<Produto, ProdutosDto>();
-            CreateMap<CriarProdrutoDto, ProdutosDto>();
+            CreateMap<CriarProdrutoDto, Produto>();
         }
     }
 }
