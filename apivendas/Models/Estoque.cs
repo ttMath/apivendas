@@ -6,6 +6,6 @@
         public int IdProduto { get; set; }
         public int Quantidade { get; set; }
 
-        public Produto Produto { get; set; }
+        public Produto? Produto { get; set; }
     }
 }
