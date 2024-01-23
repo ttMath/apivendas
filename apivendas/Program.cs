@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApiVendasDbContext>(d => d.UseSqlServer(connectionString));
 builder.Services.AddScoped<IProdutoServico, ProdutoServico>();
-builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+builder.Services.AddScoped<IVendaRepositorio, ProdutoRepositorio>();
 builder.Services.AddScoped<IEstoqueRepositorio, EstoqueRepositorio>();
 
 builder.Services.AddAutoMapper(typeof(ServicoParaDtos));

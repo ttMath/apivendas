@@ -1,4 +1,5 @@
 ﻿using apivendas.Data.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace apivendas.Models
 {
@@ -9,6 +10,7 @@ namespace apivendas.Models
             Status = true;
         }
         public int Id { get; set; }
+        [StringLength(100), Required]
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
         public decimal? ValorCusto { get; set; }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace apivendas.Repositorios
 {
     
-    public class ProdutoRepositorio : IProdutoRepositorio
+    public class ProdutoRepositorio : IVendaRepositorio
     {
         private readonly ApiVendasDbContext _db;
         public ProdutoRepositorio(ApiVendasDbContext apiVendasDbContext)

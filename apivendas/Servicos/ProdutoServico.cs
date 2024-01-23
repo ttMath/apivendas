@@ -8,10 +8,10 @@ namespace apivendas.Servicos
 {
     public class ProdutoServico : IProdutoServico
     {
-        private readonly IProdutoRepositorio _produtoRepositorio;
+        private readonly IVendaRepositorio _produtoRepositorio;
         private readonly IEstoqueRepositorio _estoqueRepositorio;
         private readonly IMapper _mapper;
-        public ProdutoServico(IProdutoRepositorio produtoRepositorio, IMapper mapper, IEstoqueRepositorio estoqueRepositorio)
+        public ProdutoServico(IVendaRepositorio produtoRepositorio, IMapper mapper, IEstoqueRepositorio estoqueRepositorio)
         {
             _produtoRepositorio = produtoRepositorio;
             _mapper = mapper;
@@ -47,7 +47,7 @@ namespace apivendas.Servicos
 
             var estoqueExistente = await _estoqueRepositorio.ObterOuCriarEstoque(produto.Id);
 
-            estoqueExistente.Produto = produto;
+            estoqueExistente.ProdutoId = produto.Id;
 
             return _mapper.Map<ProdutosDto>(produto);
         }

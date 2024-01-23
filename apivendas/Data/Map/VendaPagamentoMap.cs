@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace apivendas.Data.Map
 {
-    public class ProdutoMap : IEntityTypeConfiguration<Produto>
+    public class VendaPagamentoMap : IEntityTypeConfiguration<VendaPagamento>
     {
-        public void Configure(EntityTypeBuilder<Produto> builder)
+        public void Configure(EntityTypeBuilder<VendaPagamento> builder)
         {
         }
     }

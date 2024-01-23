@@ -2,7 +2,7 @@
 
 namespace apivendas.Repositorios.Interfaces
 {
-    public interface IProdutoRepositorio
+    public interface IVendaRepositorio
     {
         Task<List<Produto>> Listar();
         Task<Produto?> ListarId(int id);

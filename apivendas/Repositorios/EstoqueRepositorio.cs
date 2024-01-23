@@ -15,7 +15,7 @@ namespace apivendas.Repositorios
         }
         public async Task<Estoque> ObterOuCriarEstoque(int idProduto)
         {
-            var estoqueExistente = await _db.Estoques.FirstOrDefaultAsync(e => e.IdProduto == idProduto);
+            var estoqueExistente = await _db.Estoques.FirstOrDefaultAsync(e => e.ProdutoId == idProduto);
 
             if (estoqueExistente != null)
             {
@@ -23,7 +23,7 @@ namespace apivendas.Repositorios
             }
             else
             {
-                var novoEstoque = new Estoque { IdProduto = idProduto, Quantidade = 0 };
+                var novoEstoque = new Estoque { ProdutoId = idProduto };
                 _db.Estoques.Add(novoEstoque);
                 await _db.SaveChangesAsync();
 

@@ -1,8 +1,6 @@
 ﻿using apivendas.Dtos.Produtos;
-using apivendas.Servicos;
 using apivendas.Servicos.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace apivendas.Controllers
 {
@@ -31,14 +29,14 @@ namespace apivendas.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Criar([FromBody] CriarProdrutoDto criarProdruto)
+        public async Task<IActionResult> Criar(CriarProdrutoDto criarProdruto)
         {
             var produto = await _produtoServico.Criar(criarProdruto);
             return Ok(produto);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> AtualizarProduto(int id, [FromBody] CriarProdrutoDto prodrutoDto)
+        public async Task<IActionResult> AtualizarProduto(int id, CriarProdrutoDto prodrutoDto)
         {
             var produtoAtualizado = await _produtoServico.AtualizarProduto(id, prodrutoDto);
 
