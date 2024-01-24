@@ -4,6 +4,6 @@ namespace apivendas.Servicos.Interfaces
 {
     public interface IVendaServico
     {
-      Task<CriarVenda> Criar(CriarVenda criarVenda);
+      Task<MostrarVendaDTO> Criar(CriarVendaDTO criarVenda);
     }
 }

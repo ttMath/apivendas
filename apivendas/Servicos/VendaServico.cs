@@ -1,27 +1,35 @@
-﻿using apivendas.Dtos.Produtos;
+﻿using apivendas.Data.Map.Automapper;
 using apivendas.Dtos.Vendas;
-using apivendas.Models;
 using apivendas.Repositorios.Interfaces;
 using apivendas.Servicos.Interfaces;
-using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace apivendas.Servicos
 {
     public class VendaServico : IVendaServico
     {
-        private readonly IVendaServico _vendaRepositorio;
+        private readonly IVendaRepositorio _vendaRepositorio;
         private readonly IEstoqueRepositorio _estoqueRepositorio;
 
         public VendaServico(IVendaRepositorio vendaRepositorio, IEstoqueRepositorio estoqueRepositorio)
         {
-            _vendaRepositorio = (IVendaServico?)vendaRepositorio;
+            _vendaRepositorio = vendaRepositorio;
             _estoqueRepositorio = estoqueRepositorio;
         }
 
-        public async Task<CriarVenda> Criar(CriarVenda criarVenda)
+        public async Task<MostrarVendaDTO> Criar(CriarVendaDTO criarVenda)
         {
-            return null;
+            var domainVenda = criarVenda.ProjectedAs<Models.Venda>();
+            
+            var vendaCriada = await _vendaRepositorio.Criar(domainVenda);
+
+            vendaCriada = await _vendaRepositorio.ListarId(vendaCriada.Id);
+
+            vendaCriada.VendaPagamento.ValorBruto = vendaCriada.VendaItems.Sum(x => x.Quantidade * x.Produto.Valor);
+            vendaCriada.VendaPagamento.ValorTroco = vendaCriada.VendaPagamento.ValorPago - vendaCriada.VendaPagamento.ValorBruto;
+
+            await _vendaRepositorio.AtualizarVenda(vendaCriada);
+
+            return vendaCriada.ProjectedAs<MostrarVendaDTO>();
         }
     }
 }
