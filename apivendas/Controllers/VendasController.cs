@@ -1,7 +1,5 @@
-﻿using apivendas.Dtos.Produtos;
-using apivendas.Dtos.Vendas;
+﻿using apivendas.Dtos.Vendas;
 using apivendas.Servicos.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace apivendas.Controllers
