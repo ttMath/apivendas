@@ -1,4 +1,5 @@
-﻿using apivendas.Dtos.Produtos;
+﻿using apiprodutos.Repositorios.Interfaces;
+using apivendas.Dtos.Produtos;
 using apivendas.Models;
 using apivendas.Repositorios.Interfaces;
 using apivendas.Servicos.Interfaces;
@@ -8,10 +9,10 @@ namespace apivendas.Servicos
 {
     public class ProdutoServico : IProdutoServico
     {
-        private readonly IVendaRepositorio _produtoRepositorio;
+        private readonly IProdutoRepositorio _produtoRepositorio;
         private readonly IEstoqueRepositorio _estoqueRepositorio;
         private readonly IMapper _mapper;
-        public ProdutoServico(IVendaRepositorio produtoRepositorio, IMapper mapper, IEstoqueRepositorio estoqueRepositorio)
+        public ProdutoServico(IProdutoRepositorio produtoRepositorio, IMapper mapper, IEstoqueRepositorio estoqueRepositorio)
         {
             _produtoRepositorio = produtoRepositorio;
             _mapper = mapper;
