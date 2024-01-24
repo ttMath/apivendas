@@ -1,4 +1,5 @@
-﻿using apivendas.Dtos.Produtos;
+﻿using apiprodutos.Repositorios.Interfaces;
+using apivendas.Dtos.Produtos;
 using apivendas.Models;
 using apivendas.Repositorios.Interfaces;
 using apivendas.Servicos.Interfaces;
@@ -47,7 +48,7 @@ namespace apivendas.Servicos
 
             var estoqueExistente = await _estoqueRepositorio.ObterOuCriarEstoque(produto.Id);
 
-            estoqueExistente.Produto = produto;
+            estoqueExistente.ProdutoId = produto.Id;
 
             return _mapper.Map<ProdutosDto>(produto);
         }

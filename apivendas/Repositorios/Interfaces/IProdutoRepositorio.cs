@@ -1,6 +1,6 @@
 ﻿using apivendas.Models;
 
-namespace apivendas.Repositorios.Interfaces
+namespace apiprodutos.Repositorios.Interfaces
 {
     public interface IProdutoRepositorio
     {
