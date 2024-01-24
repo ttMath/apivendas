@@ -1,12 +1,12 @@
-﻿using apivendas.Data;
+﻿using apiprodutos.Repositorios.Interfaces;
+using apivendas.Data;
 using apivendas.Models;
-using apivendas.Repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace apivendas.Repositorios
 {
-    
-    public class ProdutoRepositorio : IVendaRepositorio
+
+    public class ProdutoRepositorio : IProdutoRepositorio
     {
         private readonly ApiVendasDbContext _db;
         public ProdutoRepositorio(ApiVendasDbContext apiVendasDbContext)
