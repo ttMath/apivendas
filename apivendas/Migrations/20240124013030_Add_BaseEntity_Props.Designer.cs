@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using apivendas.Data;
 
@@ -11,9 +12,11 @@ using apivendas.Data;
 namespace apivendas.Migrations
 {
     [DbContext(typeof(ApiVendasDbContext))]
-    partial class ApiVendasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240124013030_Add_BaseEntity_Props")]
+    partial class Add_BaseEntity_Props
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,6 +111,9 @@ namespace apivendas.Migrations
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("ValorUnitario")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("VendaId")
                         .HasColumnType("int");

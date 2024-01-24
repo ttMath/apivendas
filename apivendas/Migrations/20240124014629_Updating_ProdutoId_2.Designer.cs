@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using apivendas.Data;
 
@@ -11,9 +12,11 @@ using apivendas.Data;
 namespace apivendas.Migrations
 {
     [DbContext(typeof(ApiVendasDbContext))]
-    partial class ApiVendasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240124014629_Updating_ProdutoId_2")]
+    partial class Updating_ProdutoId_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,6 +112,9 @@ namespace apivendas.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("ValorUnitario")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int?>("VendaId")
                         .HasColumnType("int");
 
@@ -157,7 +163,7 @@ namespace apivendas.Migrations
 
             modelBuilder.Entity("apivendas.Models.VendaItem", b =>
                 {
-                    b.HasOne("apivendas.Models.Produto", "Produto")
+                    b.HasOne("apivendas.Models.Produto", null)
                         .WithMany()
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -166,8 +172,6 @@ namespace apivendas.Migrations
                     b.HasOne("apivendas.Models.Venda", null)
                         .WithMany("VendaItems")
                         .HasForeignKey("VendaId");
-
-                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("apivendas.Models.VendaPagamento", b =>
