@@ -1,5 +1,6 @@
 ﻿using apivendas.Dtos.Produtos;
 using apivendas.Dtos.Vendas;
+using apivendas.Servicos.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +10,16 @@ namespace apivendas.Controllers
     [ApiController]
     public class VendasController : ControllerBase
     {
-
-        [HttpPost]
-        public async Task<IActionResult> Criar(CriarVenda criarVenda)
+        private readonly IVendaServico _vendaServico;
+        public VendasController(IVendaServico vendaServico)
         {
-            return Ok();
+            _vendaServico = vendaServico;
+        }
+        [HttpPost]
+        public async Task<IActionResult> Criar(CriarVendaDTO criarVenda)
+        {
+            var venda = await this._vendaServico.Criar(criarVenda);
+            return Ok(venda);
         }
 
     }
