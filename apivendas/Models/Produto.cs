@@ -1,15 +1,16 @@
 ﻿using apivendas.Data.Enums;
+using apivendas.Dtos.Vendas;
 using System.ComponentModel.DataAnnotations;
 
 namespace apivendas.Models
 {
-    public class Produto
+    public class Produto : BaseEntity
     {
         public Produto()
         {
             Status = true;
         }
-        public int Id { get; set; }
+
         [StringLength(100), Required]
         public string Descricao { get; set; }
         public decimal Valor { get; set; }

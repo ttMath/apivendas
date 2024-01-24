@@ -5,7 +5,7 @@ namespace apivendas.Models
 {
     public class Venda : BaseEntity
     {
-        public ICollection<VendaItem> vendaItems { get; set; }
+        public ICollection<VendaItem> VendaItems { get; set; }
         public VendaPagamento VendaPagamento { get; set; }
     }
 }
