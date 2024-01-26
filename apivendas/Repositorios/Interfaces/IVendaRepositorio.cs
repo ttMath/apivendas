@@ -1,4 +1,5 @@
 ﻿using apivendas.Models;
+using System.Collections.ObjectModel;
 
 namespace apivendas.Repositorios.Interfaces
 {

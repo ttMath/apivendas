@@ -16,10 +16,25 @@ namespace apivendas.Servicos
             _estoqueRepositorio = estoqueRepositorio;
         }
 
+        public async Task<List<MostrarVendaDTO>> Listar()
+        {
+            var vendas = await _vendaRepositorio.Listar();
+
+            return vendas.ProjectedAsCollection<MostrarVendaDTO>().ToList();
+        }
+
+        public async Task<MostrarVendaDTO> ListarId(int id)
+        {
+            var venda = await _vendaRepositorio.ListarId(id);
+
+            return venda.ProjectedAs<MostrarVendaDTO>();
+        }
+
         public async Task<MostrarVendaDTO> Criar(CriarVendaDTO criarVenda)
         {
-            var domainVenda = criarVenda.ProjectedAs<Models.Venda>();
             
+            var domainVenda = criarVenda.ProjectedAs<Models.Venda>();
+
             var vendaCriada = await _vendaRepositorio.Criar(domainVenda);
 
             vendaCriada = await _vendaRepositorio.ListarId(vendaCriada.Id);
@@ -31,5 +46,6 @@ namespace apivendas.Servicos
 
             return vendaCriada.ProjectedAs<MostrarVendaDTO>();
         }
+
     }
 }
