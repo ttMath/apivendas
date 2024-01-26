@@ -1,8 +1,10 @@
-﻿namespace apivendas.Dtos.VendaPagamento
+﻿using apivendas.Data.Enums;
+
+namespace apivendas.Dtos.VendaPagamento
 {
     public class DadosPagamentoDTO
     {
-        public int IdFinalizadora { get; set; }
+        public PagamentoEnum IdFinalizadora { get; set; }
         public decimal ValorPago { get; set; }
     }
 }
