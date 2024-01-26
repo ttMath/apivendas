@@ -13,6 +13,14 @@ namespace apivendas.Repositorios
         {
             _db = apiVendasDbContext;
         }
+        public async Task<List<Venda>> Listar()
+        {
+            var vendas = await _db.Vendas
+                .Include(x => x.VendaPagamento)
+                .Include(x =>x.VendaItems).ThenInclude(x=>x.Produto)
+                .ToListAsync();
+            return vendas;
+        }
 
         public async Task<Venda?> ListarId(int id)
         {
@@ -23,11 +31,6 @@ namespace apivendas.Repositorios
             return venda;
         }
 
-        public async Task<List<Venda>> Listar()
-        {
-            var vendas = await _db.Vendas.ToListAsync();
-            return vendas;
-        }
 
         public async Task<Venda> Criar(Venda venda)
         {

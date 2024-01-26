@@ -1,4 +1,6 @@
-﻿using apivendas.Dtos.Vendas;
+﻿using apivendas.Dtos.Produtos;
+using apivendas.Dtos.Vendas;
+using apivendas.Servicos;
 using apivendas.Servicos.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +15,21 @@ namespace apivendas.Controllers
         {
             _vendaServico = vendaServico;
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<MostrarVendaDTO>>> Listar()
+        {
+            var vendas = await _vendaServico.Listar();
+            return Ok(vendas);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ListarId(int id)
+        {
+            var venda = await _vendaServico.ListarId(id);
+            return Ok(venda);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Criar(CriarVendaDTO criarVenda)
         {

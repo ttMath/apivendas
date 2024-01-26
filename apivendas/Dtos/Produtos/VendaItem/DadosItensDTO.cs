@@ -1,4 +1,6 @@
-﻿namespace apivendas.Dtos.Produtos.VendaItem
+﻿using apivendas.Models;
+
+namespace apivendas.Dtos.Produtos.VendaItem
 {
     public class DadosItensDTO
     {
