@@ -2,7 +2,7 @@
 
 namespace apivendas.Dtos.Vendas
 {
-    public class MostrarVendaPagamentoDTO : BaseDTO
+    public class MostrarVendaPagamentoDTO
     {
         public PagamentoEnum IdFinalizadora { get; set; }
         public decimal ValorBruto { get; set; }
